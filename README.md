@@ -1,1 +1,2 @@
-# Moose_Class_view
+# Moose
+Moose blog site
