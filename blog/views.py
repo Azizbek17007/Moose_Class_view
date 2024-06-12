@@ -12,7 +12,7 @@ class HomePageView(ListView):
     model = Article
     template_name = 'index.html'
     context_object_name = 'articles'
-    queryset = Article.objects.all().order_by('-pub_date')
+    queryset = Article.objects.all().order_by('id')
 
 class ArticlePageView(ListView):
     model = Article
@@ -21,11 +21,11 @@ class ArticlePageView(ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        return Article.objects.all().order_by('-pub_date')
+        return Article.objects.all().order_by('id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        article_list = Article.objects.all().order_by('-pub_date')
+        article_list = Article.objects.all().order_by('id')
         paginator = Paginator(article_list, self.paginate_by)
 
         page = self.request.GET.get('page')
@@ -51,7 +51,7 @@ class ArticleDetailView(DetailView, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(article_id=self.kwargs['pk']).order_by('-pub_date')
+        context['comments'] = Comment.objects.filter(article_id=self.kwargs['pk']).order_by('id')[:3]
         context['tags'] = self.request.GET.get('tags')
         return context
 

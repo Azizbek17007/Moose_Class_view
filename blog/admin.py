@@ -5,8 +5,8 @@ from .models import Comment, Tags, Author, About, Article
 # from .models import *
 # Register your models here.
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('id','title', 'slug', 'status', 'published')
-    list_display_links = ('id','title','status', 'published')
+    list_display = ('id','title')
+    list_display_links = ('id','title')
     search_fields = ['title']
     filter_horizontal = ['tags']
 

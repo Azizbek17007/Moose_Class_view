@@ -6,7 +6,7 @@ from django.db import models
 class Author(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images/')
-    profession = models.CharField(max_length=100)
+    profession = models.CharField(max_length=100, default='Unknown')
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
